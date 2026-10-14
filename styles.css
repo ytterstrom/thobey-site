@@ -117,13 +117,8 @@ p { text-wrap: pretty; }
 .hero-text { grid-column: 1 / span 6; padding-bottom: 0.25rem; }
 .hero-role { font-size: var(--step-lead); line-height: 1.25; font-weight: 600; max-width: 22ch; }
 .hero-lead { margin-top: 1rem; max-width: 34ch; }
-.portrait { grid-column: 8 / span 5; justify-self: end; width: min(100%, calc(100svh - 17rem - 0.8 * var(--step-display))); }
-.portrait { position: relative; aspect-ratio: 1; }
-.ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.ring .outer { fill: var(--peach); }
-.ring .inner { fill: var(--accent); }
-.portrait picture { position: absolute; left: 22.6%; top: 22.6%; width: 51.6%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
-.portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.portrait { grid-column: 9 / span 4; justify-self: end; width: min(100%, calc(100svh - 20rem - 0.8 * var(--step-display))); overflow: hidden; border-radius: 50%; }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
 
 .monument {
   font-family: var(--display);
@@ -297,7 +292,6 @@ p { text-wrap: pretty; }
   .hero-text > :nth-child(2) { animation-delay: 460ms; }
   .hero-text > :nth-child(3) { animation-delay: 540ms; }
   .portrait img { animation: settle 1800ms var(--ease-soft) both 200ms; }
-  .ring circle { transform-box: fill-box; transform-origin: center; animation: dot 700ms var(--ease-out) both; animation-delay: calc(300ms + var(--i) * 45ms); }
 
   .js [data-reveal] > * {
     opacity: 0;
@@ -322,7 +316,6 @@ p { text-wrap: pretty; }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
 @keyframes lift { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-@keyframes dot { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: none; } }
 @keyframes settle { from { transform: scale(1.08); } to { transform: none; } }
 
 /* Phone: its own composition */
@@ -334,7 +327,7 @@ p { text-wrap: pretty; }
   .hero { position: relative; }
   .hero-body { grid-row: 3; align-content: start; grid-template-columns: 1fr; row-gap: 1.75rem; padding-top: 1.75rem; padding-bottom: 2.5rem; }
   .hero-text, .portrait { grid-column: 1; }
-  .portrait { grid-row: 1; width: 86%; justify-self: start; margin-left: -5%; }
+  .portrait { grid-row: 1; width: 62%; justify-self: start; }
   .hero { grid-template-rows: auto auto 1fr; }
   .monument { grid-row: 2; white-space: normal; line-height: 0.82; margin: 1.5rem 0 0; }
   .monument span { display: block; }

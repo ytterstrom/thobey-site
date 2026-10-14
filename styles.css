@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Big Shoulders";
-  src: url("fonts/big-shoulders-800.woff2") format("woff2");
-  font-weight: 800;
+  src: url("fonts/big-shoulders.woff2") format("woff2");
+  font-weight: 300 800;
   font-display: swap;
 }
 @font-face {
@@ -33,7 +33,7 @@
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
   --step-head: clamp(2.75rem, 1.6rem + 4vw, 5rem);
-  --fit-name: 7.15;   /* "Thobey Solutions" is 7.15em wide in Big Shoulders 800 */
+  --fit-name: 5.95;   /* "Thobey Solutions" is about 5.95em wide in Big Shoulders 300 */
   --step-display: calc((100cqi - 2 * var(--margin)) / var(--fit-name));
 
   --margin: clamp(1rem, 2.2vw, 2rem);
@@ -67,7 +67,7 @@ a:hover { text-decoration-color: var(--accent); }
 h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
 h2 {
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 500;
   font-size: var(--step-head);
   line-height: 0.9;
   letter-spacing: -0.005em;
@@ -100,12 +100,13 @@ p { text-wrap: pretty; }
   font-size: var(--step-small);
 }
 .brand { display: block; line-height: 0; }
-.brand img { display: block; height: clamp(2.25rem, 3.2vw, 2.75rem); width: auto; }
+.brand .logo { display: block; height: clamp(2.25rem, 3.2vw, 2.75rem); width: auto; }
 .site-nav ul { display: flex; align-items: center; gap: 0 1.75rem; list-style: none; padding: 0; }
 .site-nav a { text-decoration: none; color: var(--muted); padding: 0.5rem 0; transition: color var(--t-hover) ease; }
 .site-nav a:hover { color: var(--ink); }
 .site-nav .lang a { color: var(--ink); font-weight: 600; }
-.site-nav .button { color: var(--accent-ink); padding: 0.75rem 1.25rem; }
+.site-nav .button, .site-nav .button:hover { color: var(--accent-ink); }
+.site-nav .button { padding: 0.75rem 1.25rem; }
 
 .hero-body {
   display: grid;
@@ -114,18 +115,18 @@ p { text-wrap: pretty; }
   align-items: end;
   padding: 0 var(--margin) clamp(2.5rem, 4.5vw, 4rem);
 }
-.hero-text { grid-column: 1 / span 6; padding-bottom: 0.25rem; }
-.hero-role { font-size: var(--step-lead); line-height: 1.25; font-weight: 600; max-width: 22ch; }
-.hero-lead { margin-top: 1rem; max-width: 34ch; }
-.portrait { grid-column: 9 / span 4; justify-self: end; width: min(100%, calc(100svh - 20rem - 0.8 * var(--step-display))); overflow: hidden; border-radius: 50%; }
+.hero-text { grid-column: 1 / span 8; padding-bottom: 0.25rem; }
+.hero-role { font-size: clamp(1.5rem, 1rem + 1.4vw, 2.25rem); line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; max-width: 30ch; }
+.hero-lead { margin-top: 1.25rem; max-width: 40ch; font-size: var(--step-lead); line-height: 1.4; color: var(--muted); }
+.portrait { grid-column: 10 / span 3; justify-self: end; width: clamp(10rem, 19vw, 18rem); overflow: hidden; border-radius: 50%; }
 .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
 
 .monument {
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 300;
   font-size: var(--step-display);
   line-height: 0.8;
-  letter-spacing: -0.005em;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0 var(--margin);
@@ -168,8 +169,8 @@ p { text-wrap: pretty; }
 .offer h3 { margin-bottom: 1.25rem; max-width: 18ch; }
 .offer p { max-width: 54ch; }
 .offer ul { list-style: none; padding: 0; margin-top: 2rem; }
-.offer li { padding: 0.75rem 1rem 0.75rem 1.5rem; margin-bottom: 0.375rem; background: var(--surface); position: relative; }
-.offer li::before { content: ""; position: absolute; left: 0.625rem; top: 1.3em; width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--accent); }
+.offer li { padding: 0.375rem 0 0.375rem 1.25rem; position: relative; }
+.offer li::before { content: ""; position: absolute; left: 0; top: 0.95em; width: 0.4375rem; height: 0.4375rem; border-radius: 50%; background: var(--accent); }
 
 /* Selected work: a row of figures, then the client names as one statement */
 .work { background: var(--field); color: var(--field-ink); }
@@ -186,12 +187,12 @@ p { text-wrap: pretty; }
 .facts li { grid-column: span 4; padding-right: 1.5rem; }
 .figure {
   font-family: var(--display);
-  font-weight: 800;
+  font-weight: 500;
   font-size: var(--step-head);
   line-height: 0.9;
   font-variant-numeric: tabular-nums;
 }
-.unit { color: var(--paper-soft); font-size: var(--step-small); margin: 0.5rem 0 1.5rem; }
+.unit { color: var(--paper-soft); font-size: var(--step-body); font-weight: 600; margin: 0.5rem 0 1.25rem; }
 .facts h3 { font-size: var(--step-body); margin-bottom: 0.5rem; }
 .facts p:last-child { max-width: 40ch; }
 .clients {
@@ -206,6 +207,7 @@ p { text-wrap: pretty; }
 
 /* About: side facts at the left, the paragraph wide from the 34% line */
 .about { background: var(--bg); align-items: start; }
+.about h2 { grid-column: 1 / -1; margin-bottom: clamp(3rem, 6vw, 5rem); }
 .side-facts { grid-column: 1 / span 4; display: grid; gap: 1.5rem; max-width: 22rem; }
 .side-facts dt { color: var(--muted); font-size: var(--step-small); }
 .side-facts dd { margin-top: 0.125rem; }
@@ -237,14 +239,18 @@ p { text-wrap: pretty; }
 }
 .topic:hover { background: #d8dbe5; }
 .topic:active { transform: scale(0.96); }
+.topic::before { content: "+"; display: inline-block; width: 1em; font-weight: 600; }
 .topic[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.topic[aria-pressed="true"]::before { content: "−"; }
+.topic-hint { display: block; margin-top: 0.75rem; font-size: var(--step-body); color: var(--paper-soft); }
+.topic-hint[hidden] { display: none; }
 .email {
   grid-column: 1 / -1;
   grid-row: 3;
   align-self: end;
   font-family: var(--display);
-  font-weight: 800;
-  font-size: calc((100cqi - 2 * var(--margin)) / 6.2);
+  font-weight: 400;
+  font-size: calc((100cqi - 2 * var(--margin)) / 4.8);
   line-height: 0.82;
   letter-spacing: -0.005em;
   text-decoration: none;
@@ -264,7 +270,7 @@ p { text-wrap: pretty; }
   list-style: none;
   padding: 0;
   margin-top: 2rem;
-  font-size: var(--step-small);
+  font-size: var(--step-body);
 }
 
 .site-footer {
@@ -280,7 +286,8 @@ p { text-wrap: pretty; }
 .cols p { color: var(--muted); }
 .cols p.first { color: var(--ink); font-weight: 600; }
 .cols a { color: inherit; }
-.wordmark { grid-row: 3; display: block; width: min(100%, 64rem); height: auto; }
+.wordmark { grid-row: 3; width: min(100%, 64rem); }
+.wordmark .logo { display: block; width: 100%; height: auto; }
 .legal { grid-row: 4; margin-top: 1.25rem; color: var(--muted); }
 
 /* Motion: everything is visible without script; the hidden start state only applies under html.js */
@@ -292,6 +299,13 @@ p { text-wrap: pretty; }
   .hero-text > :nth-child(2) { animation-delay: 460ms; }
   .hero-text > :nth-child(3) { animation-delay: 540ms; }
   .portrait img { animation: settle 1800ms var(--ease-soft) both 200ms; }
+  /* The logo's dots draw the ring in, one after another: in the header on load, in the footer when it arrives */
+  .logo circle { transform-box: fill-box; transform-origin: center; }
+  .brand .logo circle { animation: dot 600ms var(--ease-out) both; animation-delay: calc(250ms + var(--i) * 55ms); }
+  .js .wordmark[data-reveal] > * { opacity: 1; transform: none; }
+  .js .wordmark .logo circle { opacity: 0; transform: scale(0.2); }
+  .js .wordmark.is-in .logo circle { animation: dot 700ms var(--ease-out) both; animation-delay: calc(var(--i) * 70ms); }
+  .brand:hover .logo circle { animation: pulse 900ms var(--ease-out) both; animation-delay: calc(var(--i) * 25ms); }
 
   .js [data-reveal] > * {
     opacity: 0;
@@ -316,6 +330,8 @@ p { text-wrap: pretty; }
 }
 @keyframes rise { from { opacity: 0; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
 @keyframes lift { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes dot { from { opacity: 0; transform: scale(0.2); } to { opacity: 1; transform: none; } }
+@keyframes pulse { 0%, 100% { transform: none; } 40% { transform: scale(1.6); } }
 @keyframes settle { from { transform: scale(1.08); } to { transform: none; } }
 
 /* Phone: its own composition */
@@ -327,7 +343,7 @@ p { text-wrap: pretty; }
   .hero { position: relative; }
   .hero-body { grid-row: 3; align-content: start; grid-template-columns: 1fr; row-gap: 1.75rem; padding-top: 1.75rem; padding-bottom: 2.5rem; }
   .hero-text, .portrait { grid-column: 1; }
-  .portrait { grid-row: 1; width: 62%; justify-self: start; }
+  .portrait { grid-row: 1; width: 9.5rem; justify-self: start; }
   .hero { grid-template-rows: auto auto 1fr; }
   .monument { grid-row: 2; white-space: normal; line-height: 0.82; margin: 1.5rem 0 0; }
   .monument span { display: block; }

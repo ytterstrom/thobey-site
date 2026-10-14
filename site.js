@@ -35,4 +35,5 @@
     update();
   }));
   group.hidden = false;
+  document.querySelectorAll('.topic-hint').forEach((el) => { el.hidden = false; });
 })();

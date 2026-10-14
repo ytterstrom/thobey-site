@@ -18,85 +18,90 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="sv_SE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#17212b">
+<meta name="theme-color" content="#1c1c1c">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="preload" href="../fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/big-shoulders-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../styles.css">
+<script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ytterstrom.github.io/thobey-site/#thomas", "name": "Thomas Ytterström", "jobTitle": "Systemarkitekt och tech lead", "url": "https://ytterstrom.github.io/thobey-site/sv/", "image": "https://ytterstrom.github.io/thobey-site/thomas-ytterstrom-600.jpg", "email": "mailto:info@thobey.se", "telephone": "+46769430231", "address": {"@type": "PostalAddress", "addressLocality": "Habo", "addressCountry": "SE"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Jönköping International Business School"}, "knowsAbout": ["Solution architecture", "Technical leadership", ".NET", "Azure", "AI-assisted software development"], "worksFor": {"@id": "https://ytterstrom.github.io/thobey-site/#company"}, "sameAs": ["https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/"]}, {"@type": "ProfessionalService", "@id": "https://ytterstrom.github.io/thobey-site/#company", "name": "Thobey Solutions", "url": "https://ytterstrom.github.io/thobey-site/", "email": "info@thobey.se", "telephone": "+46769430231", "image": "https://ytterstrom.github.io/thobey-site/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "Habo", "addressCountry": "SE"}, "areaServed": "SE", "founder": {"@id": "https://ytterstrom.github.io/thobey-site/#thomas"}, "identifier": {"@type": "PropertyValue", "propertyID": "Organisationsnummer", "value": "559197-7367"}}]}</script>
 </head>
 <body>
 <a class="skip" href="#main">Hoppa till innehållet</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./">Thobey Solutions</a>
+<main id="main" class="page">
+<div class="opening">
+<header class="hero">
+  <div class="bar">
+    <a class="brand" href="./">Thomas Ytterström</a>
     <nav class="site-nav" aria-label="Huvudmeny">
-      <ul><li class="optional"><a href="#services">Tjänster</a></li><li class="optional"><a href="#work">Uppdrag</a></li><li class="optional"><a href="#about">Om mig</a></li><li class="optional"><a href="#contact">Kontakt</a></li><li class="lang"><a href="../" hreflang="en" lang="en">English</a></li></ul>
+      <ul><li class="optional"><a href="#services">Tjänster</a></li><li class="optional"><a href="#work">Uppdrag</a></li><li class="optional"><a href="#about">Om mig</a></li><li class="lang"><a href="../" hreflang="en" lang="en">English</a></li><li><a class="button" href="mailto:info@thobey.se">Mejla mig</a></li></ul>
     </nav>
   </div>
+  <h1 class="monument"><span>Thobey</span> <span>Solutions</span></h1>
+  <div class="hero-body">
+    <div class="hero-text">
+      <p class="hero-role">Systemarkitekt, tech lead och utvecklare i Habo.</p>
+      <p class="hero-lead">Jag hjälper organisationer att bygga mjukvara som håller, och att få verklig nytta av AI i utvecklingsarbetet.</p>
+    </div>
+    <figure class="portrait">
+      <picture>
+        <source type="image/webp" srcset="../thomas-ytterstrom-320.webp 320w, ../thomas-ytterstrom-600.webp 600w" sizes="(max-width: 47.5em) 60vw, 28vw">
+        <img src="../thomas-ytterstrom-600.jpg" srcset="../thomas-ytterstrom-320.jpg 320w, ../thomas-ytterstrom-600.jpg 600w" sizes="(max-width: 47.5em) 60vw, 28vw" width="600" height="600" alt="Porträtt av Thomas Ytterström" fetchpriority="high">
+      </picture>
+    </figure>
+  </div>
 </header>
-<main id="main">
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-text">
-        <h1>Thobey Solutions</h1>
-        <p class="role"><strong>Thomas Ytterström</strong> · Systemarkitekt, tech lead och utvecklare · Habo</p>
-        <p class="lead">Jag hjälper organisationer att designa och bygga mjukvara som håller, och att få verklig nytta av AI i utvecklingsarbetet. Över 20 år som konsult och fortfarande med händerna i koden.</p>
-        <div class="actions">
-          <a class="button" href="mailto:info@thobey.se">Mejla mig</a>
-          <a class="text-link" href="https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/">LinkedIn</a>
-        </div>
-      </div>
-      <figure class="portrait">
-        <picture>
-          <source type="image/webp" srcset="../thomas-ytterstrom-320.webp 320w, ../thomas-ytterstrom-600.webp 600w" sizes="(max-width: 47.5em) 280px, 420px">
-          <img src="../thomas-ytterstrom-600.jpg" srcset="../thomas-ytterstrom-320.jpg 320w, ../thomas-ytterstrom-600.jpg 600w" sizes="(max-width: 47.5em) 280px, 420px" width="600" height="600" alt="Porträtt av Thomas Ytterström" fetchpriority="high">
-        </picture>
-      </figure>
-    </div>
-  </section>
 
-  <section class="section" id="services" aria-labelledby="services-h">
-    <div class="wrap">
+  <section class="section services" id="services" aria-labelledby="services-h">
+    <div class="intro pinned" data-reveal>
       <h2 id="services-h">Det här gör jag</h2>
-      <div class="services"><div><h3>Arkitektur och tekniskt ledarskap</h3><p>Jag designar helheten, med struktur, integrationer, tjänster och data, och leder sedan teamet som bygger den. Oftast på Microsoft/.NET och Azure, med React och Node där de passar.</p><ul><li>Lösningsarkitektur och teknisk riktning</li><li>Tech lead och teamledare för utvecklingsteam</li><li>Egen utveckling i C#/.NET, TypeScript och React</li><li>Workshops, kravarbete och digitalisering av manuella processer</li></ul></div><div><h3>AI i mjukvaruutveckling</h3><p>Jag hjälper team att börja använda AI-assisterad utveckling på ett sätt som höjer kvalitet och tempo i stället för att öka riskerna. Just nu ingår jag i en företagsövergripande grupp AI-superanvändare, där jag driver god praxis för utvecklarna.</p><ul><li>Kom igång med verktyg som Claude Code och GitHub Copilot</li><li>Riktlinjer, arbetssätt och god praxis för team</li><li>Koppla AI till era egna system (MCP, integrationer)</li><li>Utbildning och coachning i det dagliga arbetet</li></ul></div></div>
+      <p>Konsult sedan 2003 och fortfarande med händerna i koden. Ta in mig för det ena, eller för båda.</p>
     </div>
+    <div class="offers"><div class="offer" data-reveal><h3>Arkitektur och tekniskt ledarskap</h3><p>Jag designar helheten, med struktur, integrationer, tjänster och data, och leder sedan teamet som bygger den. Oftast på Microsoft/.NET och Azure, med React och Node där de passar.</p><ul><li>Lösningsarkitektur och teknisk riktning</li><li>Tech lead och teamledare för utvecklingsteam</li><li>Egen utveckling i C#/.NET, TypeScript och React</li><li>Workshops, kravarbete och digitalisering av manuella processer</li></ul></div><div class="offer" data-reveal><h3>AI i mjukvaruutveckling</h3><p>Jag hjälper team att börja använda AI-assisterad utveckling på ett sätt som höjer kvalitet och tempo i stället för att öka riskerna. Just nu ingår jag i en företagsövergripande grupp AI-superanvändare, där jag driver god praxis för utvecklarna.</p><ul><li>Kom igång med verktyg som Claude Code och GitHub Copilot</li><li>Riktlinjer, arbetssätt och god praxis för team</li><li>Koppla AI till era egna system (MCP, integrationer)</li><li>Utbildning och coachning i det dagliga arbetet</li></ul></div></div>
   </section>
+</div>
 
-  <section class="section" id="work" aria-labelledby="work-h">
-    <div class="wrap">
+  <section class="section work" id="work" aria-labelledby="work-h">
+    <div class="intro" data-reveal>
       <h2 id="work-h">Utvalda uppdrag</h2>
-      <ul class="work"><li><p class="figure">45&#8239;000+<span>återförsäljare världen över</span></p><div><h3>Husqvarna Service Hub</h3><p>Ett globalt serviceverktyg för Husqvarnas återförsäljarnätverk. Jag har byggt det sedan 2019 och leder i dag dess utvecklingsteam på sex personer.</p></div></li><li><p class="figure">1&#8239;500+<span>portalanvändare</span></p><div><h3>Footly</h3><p>En självserviceportal som automatiserade betalningar och försäljning och ersatte flera heltidstjänster av manuellt arbete.</p></div></li><li><p class="figure">4&#8239;000+<span>vårdstuderande</span></p><div><h3>Medster</h3><p>E-handel och e-lärande i en och samma plattform, hela vägen från köp till certifikat och faktura.</p></div></li></ul>
-      <h3 class="clients-title">Organisationer jag har arbetat med</h3>
-      <ul class="clients"><li>Husqvarna</li><li>Domstolsverket</li><li>Regeringskansliet</li><li>Volvo</li><li>SAAB</li><li>Chalmers</li><li>Volkswagen Finans</li><li>Riksrevisionen</li><li>Jordbruksverket</li><li>Elof Hansson</li></ul>
+      <p>Tre plattformar jag har byggt eller lett, mätt i de människor som använder dem.</p>
     </div>
+    <ul class="facts"><li data-reveal><p class="figure">45&#8239;000+</p><p class="unit">återförsäljare världen över</p><h3>Husqvarna Service Hub</h3><p>Ett globalt serviceverktyg för Husqvarnas återförsäljarnätverk. Jag har byggt det sedan 2019 och leder i dag dess utvecklingsteam på sex personer.</p></li><li data-reveal><p class="figure">1&#8239;500+</p><p class="unit">portalanvändare</p><h3>Footly</h3><p>En självserviceportal som automatiserade betalningar och försäljning och ersatte flera heltidstjänster av manuellt arbete.</p></li><li data-reveal><p class="figure">4&#8239;000+</p><p class="unit">vårdstuderande</p><h3>Medster</h3><p>E-handel och e-lärande i en och samma plattform, hela vägen från köp till certifikat och faktura.</p></li></ul>
+    <p class="clients" data-reveal><strong id="clients-h">Organisationer jag har arbetat med:</strong> <span>Husqvarna</span>, <span>Domstolsverket</span>, <span>Regeringskansliet</span>, <span>Volvo</span>, <span>SAAB</span>, <span>Chalmers</span>, <span>Volkswagen Finans</span>, <span>Riksrevisionen</span>, <span>Jordbruksverket</span>, <span>Elof Hansson</span>.</p>
   </section>
 
-  <section class="section" id="about" aria-labelledby="about-h">
-    <div class="wrap">
-      <h2 id="about-h">Om mig</h2>
-      <div class="about"><div><p>Jag har arbetat som konsult sedan 2003, bland annat inom tillverkningsindustri, offentlig sektor, fastigheter och handel. Jag läste informatik vid Internationella handelshögskolan i Jönköping och ser därför tekniken som ett sätt att föra verksamheten framåt, inte som ett mål i sig.</p><p>De som arbetar med mig beskriver mig oftast som nyfiken och lösningsorienterad. Som ledare ser jag det som mitt jobb att få fram det bästa i människorna runt mig.</p></div><div><p>Jag driver Thobey Solutions från Habo, nära Jönköping, och arbetar på plats eller på distans i hela Sverige.</p><p>På fritiden dömer jag volleyboll på högsta nationella nivå, både inomhus och beach.</p></div></div>
-      <p class="credentials">Certified Software Architect, Microsoft Platform · Magisterexamen i informatik</p>
-    </div>
+  <section class="section about" id="about" aria-labelledby="about-h">
+    <h2 id="about-h" class="sr-only">Om mig</h2>
+    <dl class="side-facts" data-reveal><div><dt>Bas</dt><dd>Habo, nära Jönköping. På plats eller på distans i hela Sverige.</dd></div><div><dt>Konsult sedan</dt><dd>2003</dd></div><div><dt>Utbildning</dt><dd>Magisterexamen i informatik, Internationella handelshögskolan i Jönköping</dd></div><div><dt>Certifiering</dt><dd>Software Architect, Microsoft Platform</dd></div><div><dt>På fritiden</dt><dd>Volleybolldomare på högsta nationella nivå, inomhus och beach</dd></div></dl>
+    <div class="about-text" data-reveal><p>Jag har arbetat som konsult sedan 2003, bland annat inom tillverkningsindustri, offentlig sektor, fastigheter och handel. Jag läste informatik och ser därför tekniken som ett sätt att föra verksamheten framåt, inte som ett mål i sig.</p><p>De som arbetar med mig beskriver mig oftast som nyfiken och lösningsorienterad. Som ledare ser jag det som mitt jobb att få fram det bästa i människorna runt mig.</p></div>
   </section>
 
-  <section class="contact" id="contact" aria-labelledby="contact-h">
-    <div class="wrap">
+  <section class="section contact" id="contact" aria-labelledby="contact-h">
+    <div class="contact-top" data-reveal>
       <h2 id="contact-h">Hör av dig</h2>
-      <p class="lead">Behöver du en arkitekt, en tech lead eller hjälp att komma igång med AI? Skriv några rader om vad du arbetar med.</p>
-      <a class="email" href="mailto:info@thobey.se">info@thobey.se</a>
-      <ul class="contact-list">
-        <li><a href="tel:+46769430231">+46 76 943 02 31</a></li>
-        <li><a href="https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/">LinkedIn</a></li>
-        <li>Habo</li>
-      </ul>
+      <p>Behöver du en arkitekt, en tech lead eller hjälp att komma igång med AI? Skriv några rader om vad du arbetar med.</p>
+      <div class="topics" role="group" aria-label="Vad gäller det?" hidden>
+        <button type="button" class="topic" aria-pressed="false">Arkitektur</button><button type="button" class="topic" aria-pressed="false">Tech lead</button><button type="button" class="topic" aria-pressed="false">AI i utvecklingen</button>
+      </div>
     </div>
+    <a class="email" href="mailto:info@thobey.se" data-mail='{&quot;to&quot;: &quot;info@thobey.se&quot;, &quot;def&quot;: &quot;Förfrågan via thobey.se&quot;, &quot;pre&quot;: &quot;Förfrågan: &quot;, &quot;and&quot;: &quot; och &quot;}'><span>info@</span><span>thobey.se</span></a>
+    <ul class="contact-list">
+      <li><a href="tel:+46769430231">+46 76 943 02 31</a></li>
+      <li>Habo</li>
+      <li><a href="https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/">LinkedIn</a></li>
+    </ul>
   </section>
 </main>
+
 <footer class="site-footer">
-  <div class="wrap">
-    <p>© 2026 Thobey Solutions · Org.nr 559197-7367</p>
-    <p>thobey.se</p>
+  <div class="cols">
+    <div><p class="first">Thobey Solutions</p><p>Org.nr 559197-7367</p><p>Habo</p></div>
+    <div><p class="first">Kontakt</p><p><a href="mailto:info@thobey.se">info@thobey.se</a></p><p><a href="tel:+46769430231">+46 76 943 02 31</a></p></div>
+    <div><p class="first">På andra ställen</p><p><a href="https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/">LinkedIn</a></p><p><a href="../" hreflang="en" lang="en">English</a></p></div>
   </div>
+  <p class="wordmark" aria-hidden="true">Thobey Solutions</p>
+  <p class="legal">© 2026 Thobey Solutions · thobey.se</p>
 </footer>
+<script src="../site.js" defer></script>
 </body>
 </html>

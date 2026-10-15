@@ -5,6 +5,12 @@
   font-display: swap;
 }
 @font-face {
+  font-family: "Montserrat";
+  src: url("fonts/montserrat.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
   font-family: "Public Sans";
   src: url("fonts/public-sans.woff2") format("woff2");
   font-weight: 400 600;
@@ -33,7 +39,8 @@
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
   --step-head: clamp(2.75rem, 1.6rem + 4vw, 5rem);
-  --fit-name: 5.95;   /* "Thobey Solutions" is about 5.95em wide in Big Shoulders 300 */
+  --logo: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --fit-name: 12.48;   /* "THOBEY SOLUTIONS" is about 12.48em wide in Montserrat 500 with 0.12em tracking */
   --step-display: calc((100cqi - 2 * var(--margin)) / var(--fit-name));
 
   --margin: max(clamp(1rem, 2.2vw, 2rem), (100vw - 90rem) / 2);
@@ -85,9 +92,8 @@ p { text-wrap: pretty; }
 
 /* Hero: the name as a monument along the bottom edge */
 .hero {
-  min-height: 100svh;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto auto;
   background: var(--bg);
   overflow: hidden;
 }
@@ -113,7 +119,7 @@ p { text-wrap: pretty; }
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--gap);
   align-items: end;
-  padding: 0 var(--margin) clamp(2.5rem, 4.5vw, 4rem);
+  padding: clamp(3rem, 6vw, 5.5rem) var(--margin) clamp(2.5rem, 4.5vw, 4rem);
 }
 .hero-text { grid-column: 1 / span 8; padding-bottom: 0.25rem; }
 .hero-role { font-size: clamp(1.5rem, 1rem + 1.4vw, 2.25rem); line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; max-width: 30ch; }
@@ -121,12 +127,13 @@ p { text-wrap: pretty; }
 .portrait { grid-column: 10 / span 3; justify-self: end; width: clamp(10rem, 19vw, 18rem); overflow: hidden; border-radius: 50%; }
 .portrait img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
 
+/* Set in the logo's lettering: wide geometric capitals, the second word in the logo's peach */
 .monument {
-  font-family: var(--display);
-  font-weight: 300;
+  font-family: var(--logo);
+  font-weight: 500;
   font-size: var(--step-display);
   line-height: 0.8;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
   padding: 0 var(--margin);
@@ -135,6 +142,7 @@ p { text-wrap: pretty; }
   grid-row: 3;
 }
 .monument span { display: inline-block; }
+.monument span:last-child { color: var(--peach); margin-right: -0.12em; }
 
 .button {
   display: inline-block;
@@ -156,7 +164,8 @@ p { text-wrap: pretty; }
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
 }
-.intro { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: end; }
+.intro { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
+.intro > * { text-box: trim-start cap alphabetic; }
 .intro h2 { grid-column: 1 / span 7; }
 .intro p { grid-column: 9 / span 4; max-width: 34ch; }
 
@@ -341,7 +350,6 @@ p { text-wrap: pretty; }
   .hero-body { grid-row: 3; align-content: start; grid-template-columns: 1fr; row-gap: 1.75rem; padding-top: 1.75rem; padding-bottom: 0; }
   .hero-text, .portrait { grid-column: 1; }
   .portrait { grid-row: 1; width: 9.5rem; justify-self: center; }
-  .hero { min-height: 0; grid-template-rows: auto auto auto; }
   .monument { grid-row: 2; margin: 1.5rem 0 0; }
   .section { grid-template-columns: 1fr; }
   .contact { min-height: 0; }

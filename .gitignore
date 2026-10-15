@@ -1,0 +1,5 @@
+# Impeccable: per-developer and live-session state
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/live/*
+!.impeccable/live/config.json

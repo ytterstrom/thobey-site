@@ -319,11 +319,16 @@ def page(lang):
 """
 
 
-(OUT / "index.html").write_text(page("en"))
+# Same bytes on every OS: UTF-8 (not the Windows locale code page) and LF line endings
+def write(path, text):
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
+write(OUT / "index.html", page("en"))
 (OUT / "sv").mkdir(exist_ok=True)
-(OUT / "sv" / "index.html").write_text(page("sv"))
-(OUT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
-(OUT / "sitemap.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
+write(OUT / "sv" / "index.html", page("sv"))
+write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+write(OUT / "sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>{SITE}/</loc><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
   <url><loc>{SITE}/sv/</loc><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
@@ -331,6 +336,6 @@ def page(lang):
 """)
 cname = OUT / "CNAME"
 if SITE == "https://thobey.se":
-    cname.write_text("thobey.se\n")
+    write(cname, "thobey.se\n")
 elif cname.exists():
     cname.unlink()

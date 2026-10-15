@@ -36,7 +36,7 @@
   --fit-name: 5.95;   /* "Thobey Solutions" is about 5.95em wide in Big Shoulders 300 */
   --step-display: calc((100cqi - 2 * var(--margin)) / var(--fit-name));
 
-  --margin: clamp(1rem, 2.2vw, 2rem);
+  --margin: max(clamp(1rem, 2.2vw, 2rem), (100vw - 90rem) / 2);
   --gap: clamp(1.25rem, 2vw, 2rem);
   --section: clamp(6rem, 11vw, 9.5rem);
 
@@ -334,26 +334,24 @@ p { text-wrap: pretty; }
 
 /* Phone: its own composition */
 @media (max-width: 47.5em) {
-  :root { --fit-name: 4.2; }
   .site-nav .optional { display: none; }
   .site-nav ul { gap: 0 1rem; }
   .site-nav .button { padding: 0.75rem 1rem; }
   .hero { position: relative; }
-  .hero-body { grid-row: 3; align-content: start; grid-template-columns: 1fr; row-gap: 1.75rem; padding-top: 1.75rem; padding-bottom: 2.5rem; }
+  .hero-body { grid-row: 3; align-content: start; grid-template-columns: 1fr; row-gap: 1.75rem; padding-top: 1.75rem; padding-bottom: 0; }
   .hero-text, .portrait { grid-column: 1; }
-  .portrait { grid-row: 1; width: 9.5rem; justify-self: start; }
-  .hero { grid-template-rows: auto auto 1fr; }
-  .monument { grid-row: 2; white-space: normal; line-height: 0.82; margin: 1.5rem 0 0; }
-  .monument span { display: block; }
+  .portrait { grid-row: 1; width: 9.5rem; justify-self: center; }
+  .hero { min-height: 0; grid-template-rows: auto auto auto; }
+  .monument { grid-row: 2; margin: 1.5rem 0 0; }
   .section { grid-template-columns: 1fr; }
+  .contact { min-height: 0; }
+  #services { padding-top: 3.5rem; }
   .intro, .offers, .facts { grid-template-columns: 1fr; }
   .intro h2, .intro p, .offer, .offers, .facts li, .clients, .side-facts, .about-text, .contact-top { grid-column: 1; }
   .intro p { margin-top: 1.25rem; }
   .offer { padding-right: 0; }
   .side-facts { grid-template-columns: 1fr 1fr; gap: 1.25rem; max-width: none; margin-bottom: 3rem; }
   .side-facts > div:first-child { grid-column: 1 / -1; }
-  .email { font-size: calc((100cqi - 2 * var(--margin)) / 3.95); line-height: 0.84; }
-  .email span { display: block; }
   .contact-list { flex-direction: column; gap: 0.75rem; font-size: 0.9375rem; }
   .cols { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
 }

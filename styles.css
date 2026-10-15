@@ -36,7 +36,7 @@
   --fit-name: 5.95;   /* "Thobey Solutions" is about 5.95em wide in Big Shoulders 300 */
   --step-display: calc((100cqi - 2 * var(--margin)) / var(--fit-name));
 
-  --margin: clamp(1rem, 2.2vw, 2rem);
+  --margin: max(clamp(1rem, 2.2vw, 2rem), (100vw - 90rem) / 2);
   --gap: clamp(1.25rem, 2vw, 2rem);
   --section: clamp(6rem, 11vw, 9.5rem);
 

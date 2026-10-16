@@ -3,10 +3,12 @@
 Usage: python3 build-taste.py <outdir> [base-url]
 """
 import json, sys, html
+from datetime import date
 from pathlib import Path
 
 OUT = Path(sys.argv[1])
 SITE = (sys.argv[2] if len(sys.argv) > 2 else "https://thobey.se").rstrip("/")
+PROD = SITE == "https://thobey.se"
 LINKEDIN = "https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/"
 EMAIL = "info@thobey.se"
 PHONE_HREF = "+46769430231"
@@ -16,7 +18,8 @@ C = {
  "en": {
   "path": "/", "other": "sv", "other_path": "sv/", "root": "", "other_label": "Svenska",
   "title": "Thobey Solutions · Thomas Ytterström, system architect and tech lead",
-  "desc": "Thomas Ytterström is a system architect, tech lead and developer in Habo, Sweden. Thobey Solutions helps organizations build software that holds up and adopt AI in development.",
+  "desc": "Thomas Ytterström is a system architect, tech lead and developer in Habo, near Jönköping, Sweden. Thobey Solutions helps organizations build software that holds up and adopt AI in development.",
+  "og_alt": "Thobey Solutions logo next to a portrait of Thomas Ytterström, system architect, tech lead and developer",
   "skip": "Skip to content",
   "nav": ["Services", "Work", "About", "Contact"],
   "hero_role": "Thomas Ytterström, system architect, tech lead and developer in Habo, Sweden.",
@@ -81,7 +84,8 @@ C = {
  "sv": {
   "path": "/sv/", "other": "en", "other_path": "../", "root": "../", "other_label": "English",
   "title": "Thobey Solutions · Thomas Ytterström, systemarkitekt och tech lead",
-  "desc": "Thomas Ytterström är systemarkitekt, tech lead och utvecklare i Habo. Thobey Solutions hjälper organisationer att bygga mjukvara som håller och att använda AI i utvecklingen.",
+  "desc": "Thomas Ytterström är systemarkitekt, tech lead och utvecklare i Habo, nära Jönköping. Thobey Solutions hjälper organisationer att bygga mjukvara som håller och att använda AI i utvecklingen.",
+  "og_alt": "Thobey Solutions logotyp bredvid ett porträtt av Thomas Ytterström, systemarkitekt, tech lead och utvecklare",
   "skip": "Hoppa till innehållet",
   "nav": ["Tjänster", "Uppdrag", "Om mig", "Kontakt"],
   "hero_role": "Thomas Ytterström, systemarkitekt, tech lead och utvecklare i Habo.",
@@ -228,22 +232,25 @@ def page(lang):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(c['title'])}</title>
-<meta name="description" content="{e(c['desc'])}">
+<meta name="description" content="{e(c['desc'])}">{'' if PROD else chr(10) + '<meta name="robots" content="noindex">'}
 <link rel="canonical" href="{url}">
 <link rel="alternate" hreflang="en" href="{SITE}/">
 <link rel="alternate" hreflang="sv" href="{SITE}/sv/">
 <link rel="alternate" hreflang="x-default" href="{SITE}/">
 <meta property="og:type" content="profile">
+<meta property="og:site_name" content="Thobey Solutions">
 <meta property="og:title" content="{e(c['title'])}">
 <meta property="og:description" content="{e(c['desc'])}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(c['og_alt'])}">
 <meta property="og:locale" content="{'en_GB' if lang == 'en' else 'sv_SE'}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#262936">
 <link rel="icon" href="{r}favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{r}apple-touch-icon.png">
 <link rel="preload" href="{r}fonts/big-shoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{r}fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{r}fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
@@ -347,12 +354,12 @@ write(OUT / "sv" / "index.html", page("sv"))
 write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 write(OUT / "sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url><loc>{SITE}/</loc><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
-  <url><loc>{SITE}/sv/</loc><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
+  <url><loc>{SITE}/</loc><lastmod>{date.today()}</lastmod><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
+  <url><loc>{SITE}/sv/</loc><lastmod>{date.today()}</lastmod><xhtml:link rel="alternate" hreflang="sv" href="{SITE}/sv/"/><xhtml:link rel="alternate" hreflang="en" href="{SITE}/"/></url>
 </urlset>
 """)
 cname = OUT / "CNAME"
-if SITE == "https://thobey.se":
+if PROD:
     write(cname, "thobey.se\n")
 elif cname.exists():
     cname.unlink()

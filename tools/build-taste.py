@@ -21,6 +21,7 @@ C = {
   "nav": ["Services", "Work", "About", "Contact"],
   "hero_role": "Thomas Ytterström, system architect, tech lead and developer in Habo, Sweden.",
   "hero_lead": "I help organizations build software that holds up, and get real value from AI in how they build it.",
+  "hero_facts": ["In IT since 2003", ".NET", "Azure", "AI-assisted development", "On-site or remote across Sweden"],
   "cta": "Email me",
   "services_h": "What I do",
   "services_note": "Building software since 2003. Senior enough to lead, technical enough to go deep. Bring me in for one of these, or both.",
@@ -64,6 +65,10 @@ C = {
   "topic_hint": "Pick what it's about and your email opens with it as the subject.",
   "topic_label": "What is it about?",
   "topics": ["Architecture", "Tech lead", "AI in development"],
+  "topic_general": "General question",
+  "subject_label": "Subject:",
+  "copy": "Copy address",
+  "copied": "Copied",
   "subject_default": "Enquiry via thobey.se",
   "subject_prefix": "Enquiry: ",
   "and": " and ",
@@ -81,6 +86,7 @@ C = {
   "nav": ["Tjänster", "Uppdrag", "Om mig", "Kontakt"],
   "hero_role": "Thomas Ytterström, systemarkitekt, tech lead och utvecklare i Habo.",
   "hero_lead": "Jag hjälper organisationer att bygga mjukvara som håller, och att få verklig nytta av AI i utvecklingsarbetet.",
+  "hero_facts": ["I IT-branschen sedan 2003", ".NET", "Azure", "AI-assisterad utveckling", "På plats eller på distans i hela Sverige"],
   "cta": "Mejla mig",
   "services_h": "Det här gör jag",
   "services_note": "Bygger mjukvara sedan 2003. Senior nog att leda, teknisk nog att gå på djupet. Välj det ena, eller kombinera båda.",
@@ -124,6 +130,10 @@ C = {
   "topic_hint": "Välj vad det gäller så får mejlet det som ämnesrad.",
   "topic_label": "Vad gäller det?",
   "topics": ["Arkitektur", "Tech lead", "AI i utvecklingen"],
+  "topic_general": "Allmän fråga",
+  "subject_label": "Ämnesrad:",
+  "copy": "Kopiera adressen",
+  "copied": "Kopierad",
   "subject_default": "Förfrågan via thobey.se",
   "subject_prefix": "Förfrågan: ",
   "and": " och ",
@@ -208,6 +218,9 @@ def page(lang):
     about = "".join(f"<p>{p}</p>" for p in c["about_text"])
     facts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in c["facts"])
     topics = "".join(f'<button type="button" class="topic" aria-pressed="false">{t}</button>' for t in c["topics"])
+    # the general topic stands alone: picking it clears the others, and picking another clears it
+    topics += f'<button type="button" class="topic" aria-pressed="false" data-solo>{c["topic_general"]}</button>'
+    hero_facts = " · ".join(c["hero_facts"])
     mail_cfg = json.dumps({"to": EMAIL, "def": c["subject_default"], "pre": c["subject_prefix"], "and": c["and"]}, ensure_ascii=False)
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -233,6 +246,7 @@ def page(lang):
 <link rel="icon" href="{r}favicon.svg" type="image/svg+xml">
 <link rel="preload" href="{r}fonts/big-shoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{r}fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{r}fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{r}styles.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
@@ -253,6 +267,7 @@ def page(lang):
     <div class="hero-text">
       <p class="hero-role">{c['hero_role']}</p>
       <p class="hero-lead">{c['hero_lead']}</p>
+      <p class="hero-facts">{hero_facts}</p>
     </div>
     <figure class="portrait">
       <picture>
@@ -294,9 +309,11 @@ def page(lang):
       <div class="topics" role="group" aria-label="{c['topic_label']}" hidden>
         {topics}
       </div>
+      <p class="subject" aria-live="polite" hidden>{c['subject_label']} <span></span></p>
     </div>
     <a class="email" href="mailto:{EMAIL}" data-mail='{e(mail_cfg)}'><span>info@</span><span>thobey.se</span></a>
     <ul class="contact-list">
+      <li hidden><button type="button" class="button copy" data-address="{EMAIL}" data-copied="{c['copied']}">{c['copy']}</button><span class="sr-only" role="status"></span></li>
       <li><a href="tel:{PHONE_HREF}">{PHONE}</a></li>
       <li>{c['place']}</li>
       <li><a href="{LINKEDIN}">LinkedIn</a></li>

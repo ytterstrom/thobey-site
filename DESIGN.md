@@ -14,16 +14,15 @@ colors:
   coral-ink: "#1d1f29"
   peach-muted-ink: "#4a3d3f"
   chip-grey: "#e4e6ee"
-  chip-grey-hover: "#d8dbe5"
 typography:
   monument:
-    fontFamily: "Montserrat, Segoe UI, system-ui, sans-serif"
+    fontFamily: "Montserrat, Montserrat Fallback, Segoe UI, system-ui, sans-serif"
     fontSize: "calc((100cqi - 2 * var(--margin)) / 12.48)"
     fontWeight: 500
     lineHeight: 0.8
     letterSpacing: "0.12em"
   headline:
-    fontFamily: "Big Shoulders, Arial Narrow, sans-serif"
+    fontFamily: "Big Shoulders, Big Shoulders Fallback, Arial Narrow, sans-serif"
     fontSize: "clamp(2.75rem, 1.6rem + 4vw, 5rem)"
     fontWeight: 500
     lineHeight: 0.9
@@ -65,14 +64,15 @@ components:
   button-primary-hover:
     backgroundColor: "{colors.signal-coral-hover}"
   topic-chip:
-    backgroundColor: "{colors.chip-grey}"
+    backgroundColor: "transparent"
+    borderColor: "{colors.slate-soft}"
     textColor: "{colors.slate-ink}"
     typography: "{typography.label}"
     rounded: "{rounded.none}"
     padding: "0.875rem 1.125rem"
     height: "44px"
   topic-chip-hover:
-    backgroundColor: "{colors.chip-grey-hover}"
+    backgroundColor: "{colors.chip-grey}"
   topic-chip-selected:
     backgroundColor: "{colors.signal-coral}"
     textColor: "{colors.coral-ink}"
@@ -117,7 +117,7 @@ A dark slate ground with one coral signal and a warm peach field, all taken from
 - **Mist** (`mist`): secondary text on slate (lead lines, nav links, side-fact labels, footer columns).
 - **Slate Soft** (`slate-soft`): quiet text on light grounds (units under figures, hints).
 - **Coral Ink** (`coral-ink`): text on coral.
-- **Chip Grey** (`chip-grey`, hover `chip-grey-hover`): unselected topic chips on paper.
+- **Chip Grey** (`chip-grey`): hover fill of the outlined topic chips on paper.
 
 ### Named Rules
 **The One Signal Rule.** Signal Coral is the only accent. It marks what to act on or where you are, never large decorative areas.
@@ -126,8 +126,8 @@ A dark slate ground with one coral signal and a warm peach field, all taken from
 
 ## Typography
 
-**Logo Font:** Montserrat (with Segoe UI, system-ui, sans-serif)
-**Display Font:** Big Shoulders (with Arial Narrow, sans-serif)
+**Logo Font:** Montserrat (with Montserrat Fallback, Segoe UI, system-ui, sans-serif)
+**Display Font:** Big Shoulders (with Big Shoulders Fallback, Arial Narrow, sans-serif)
 **Body Font:** Public Sans (with Segoe UI, system-ui, sans-serif)
 
 **Character:** The hero name echoes the logo's wide, geometric, widely tracked capitals. Below it, a tall, condensed signage face in capitals carries headlines and numbers against a sober, public-service grotesque that explains plainly.
@@ -143,13 +143,13 @@ A dark slate ground with one coral signal and a warm peach field, all taken from
 ### Named Rules
 **The Capitals Rule.** Big Shoulders is always uppercase and only used for the email monument, section headlines and figures. Montserrat is only used for the hero name, in widely tracked capitals like the logo. Public Sans is never set in capitals.
 
-**The Fit Rule.** Monumental lines are fitted to the container, never wrapped. If the text changes, recompute its em-width (`--fit-name`).
+**The Fit Rule.** Monumental lines are fitted to the container, never wrapped. If the text changes, recompute its em-width (`--fit-name`, the `.email` divisor) and the `size-adjust` of the metric-matched Arial stand-ins ("Big Shoulders Fallback", "Montserrat Fallback"), so the lines keep their width before and without the web fonts.
 
 ## Layout
 
 One twelve-column grid (`gap` column gap) inside shared side margins (`margin`, which grows to centre a 90rem measure on wide screens). Sections use subgrid so headings, notes and content align to the same columns: intro heading on columns 1–7 with its note on 9–12; offers span six columns each; facts span four each; about places side facts on 1–4 and the text on 5–12. Vertical rhythm comes from `section` padding.
 
-The hero fills the viewport: bar at the top, role and portrait in the middle, the monument along the bottom edge. Contact also fills the viewport, with the email address as the bottom monument.
+The hero opens with the bar, then the monument directly beneath it, then the role, lead and a one-line facts strip (years, stack, where) beside the portrait. Contact sizes to its content: intro, topic chips and the live subject line, generous space, then the email address as the bottom monument with the contact list (copy button first) beneath its descenders.
 
 Under 47.5em the phone gets its own composition: one column, the portrait centred above the text, the monument moved up under the bar, optional nav items hidden, and side facts in two columns.
 
@@ -172,8 +172,12 @@ Square corners everywhere (radius 0) on buttons, chips and bands. The only curve
 - **Hover / Focus:** lightens to `signal-coral-hover`; presses to 97% scale on active; 3px coral focus outline with 3px offset.
 
 ### Chips (topic toggles)
-- **Style:** Chip Grey on paper, Slate Ink label, 600 small text, 44px minimum height, a leading "+" glyph.
-- **State:** selected turns Signal Coral with a "−" glyph (`aria-pressed`); presses to 96% on active.
+- **Style:** outlined in 1px Slate Soft on paper (Chip Grey fill on hover), Slate Ink label, 600 small text, 44px minimum height, a leading "+" glyph.
+- **State:** selected turns Signal Coral with a "−" glyph (`aria-pressed`); presses to 96% on active. The general topic (`data-solo`) never combines with the others: picking it clears them, picking another clears it.
+- **Subject line:** beneath the chips, "Subject: …" shows the subject the email will open with, updated live.
+
+### Copy button
+- A compact primary button ("Copy address") leads the contact list, the one coral element in Contact until a chip is selected. It copies the address, reads "Copied" for two seconds and announces it through a status region. Hidden without JavaScript or clipboard support.
 
 ### Navigation
 - Small text in Mist, turning Paper on hover; the language switch in Paper 600; a compact coral "Email me" button at the end. On phones, optional links are hidden.

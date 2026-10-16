@@ -22,6 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/big-shoulders.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/public-sans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/montserrat.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://ytterstrom.github.io/thobey-site/#thomas", "name": "Thomas Ytterström", "jobTitle": "System architect and tech lead", "url": "https://ytterstrom.github.io/thobey-site/", "image": "https://ytterstrom.github.io/thobey-site/thomas-ytterstrom-600.jpg", "email": "mailto:info@thobey.se", "telephone": "+46769430231", "address": {"@type": "PostalAddress", "addressLocality": "Habo", "addressCountry": "SE"}, "alumniOf": {"@type": "CollegeOrUniversity", "name": "Jönköping International Business School"}, "knowsAbout": ["Solution architecture", "Technical leadership", ".NET", "Azure", "AI-assisted software development"], "worksFor": {"@id": "https://ytterstrom.github.io/thobey-site/#company"}, "sameAs": ["https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/"]}, {"@type": "ProfessionalService", "@id": "https://ytterstrom.github.io/thobey-site/#company", "name": "Thobey Solutions", "url": "https://ytterstrom.github.io/thobey-site/", "email": "info@thobey.se", "telephone": "+46769430231", "image": "https://ytterstrom.github.io/thobey-site/og.jpg", "address": {"@type": "PostalAddress", "addressLocality": "Habo", "addressCountry": "SE"}, "areaServed": "SE", "founder": {"@id": "https://ytterstrom.github.io/thobey-site/#thomas"}, "identifier": {"@type": "PropertyValue", "propertyID": "Organisationsnummer", "value": "559197-7367"}}]}</script>
@@ -42,6 +43,7 @@
     <div class="hero-text">
       <p class="hero-role">Thomas Ytterström, system architect, tech lead and developer in Habo, Sweden.</p>
       <p class="hero-lead">I help organizations build software that holds up, and get real value from AI in how they build it.</p>
+      <p class="hero-facts">In IT since 2003 · .NET · Azure · AI-assisted development · On-site or remote across Sweden</p>
     </div>
     <figure class="portrait">
       <picture>
@@ -81,11 +83,13 @@
       <h2 id="contact-h">Let's talk</h2>
       <p>Need an architect, a tech lead or help getting started with AI? Send me a few lines about what you're working on. <span class="topic-hint" hidden>Pick what it's about and your email opens with it as the subject.</span></p>
       <div class="topics" role="group" aria-label="What is it about?" hidden>
-        <button type="button" class="topic" aria-pressed="false">Architecture</button><button type="button" class="topic" aria-pressed="false">Tech lead</button><button type="button" class="topic" aria-pressed="false">AI in development</button>
+        <button type="button" class="topic" aria-pressed="false">Architecture</button><button type="button" class="topic" aria-pressed="false">Tech lead</button><button type="button" class="topic" aria-pressed="false">AI in development</button><button type="button" class="topic" aria-pressed="false" data-solo>General question</button>
       </div>
+      <p class="subject" aria-live="polite" hidden>Subject: <span></span></p>
     </div>
     <a class="email" href="mailto:info@thobey.se" data-mail='{&quot;to&quot;: &quot;info@thobey.se&quot;, &quot;def&quot;: &quot;Enquiry via thobey.se&quot;, &quot;pre&quot;: &quot;Enquiry: &quot;, &quot;and&quot;: &quot; and &quot;}'><span>info@</span><span>thobey.se</span></a>
     <ul class="contact-list">
+      <li hidden><button type="button" class="button copy" data-address="info@thobey.se" data-copied="Copied">Copy address</button><span class="sr-only" role="status"></span></li>
       <li><a href="tel:+46769430231">+46 76 943 02 31</a></li>
       <li>Habo, Sweden</li>
       <li><a href="https://www.linkedin.com/in/thomas-ytterstr%C3%B6m-4547a453/">LinkedIn</a></li>

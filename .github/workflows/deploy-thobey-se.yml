@@ -1,0 +1,41 @@
+name: Deploy to thobey.se
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-thobey-se
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Build site for https://thobey.se
+        run: |
+          mkdir public
+          python tools/build-taste.py public https://thobey.se
+          rm -f public/CNAME
+          mkdir public/fonts
+          cp styles.css site.js favicon.svg og.jpg thomas-ytterstrom-*.jpg thomas-ytterstrom-*.webp public/
+          cp fonts/big-shoulders.woff2 fonts/montserrat.woff2 fonts/public-sans.woff2 public/fonts/
+          find public -type f | sort
+
+      - name: Upload over SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          rsync -rtvz --checksum -e "ssh -i ~/.ssh/id_deploy -p ${{ vars.SSH_PORT || 22 }}" \
+            public/ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ vars.DEPLOY_PATH }}"

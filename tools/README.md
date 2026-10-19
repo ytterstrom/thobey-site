@@ -13,3 +13,13 @@ python3 tools/build-taste.py .
 ```
 
 `logo/` holds the traced logo: `logo.svg` (dark text) and `logo-light.svg` (light text, inlined into the pages by the generator).
+
+## Hero aurora
+
+`hero-shader.js` at the repo root is built from `shaders/` (the [Shaders](https://github.com/shader-effects-inc/shaders) library, MIT). Edit `shaders/src/hero-shader.js`, then rebuild:
+
+```
+cd tools/shaders && npm install && node build.mjs
+```
+
+The build only bundles the components in use. Telemetry to shaders.com is turned off.

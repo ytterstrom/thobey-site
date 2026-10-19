@@ -338,6 +338,7 @@ def page(lang):
   <p class="legal">© 2026 Thobey Solutions · thobey.se</p>
 </footer>
 <script src="{r}site.js" defer></script>
+<script type="module" src="{r}hero-shader.js"></script>
 </body>
 </html>
 """

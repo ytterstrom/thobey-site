@@ -24,7 +24,7 @@ jobs:
           python tools/build-taste.py public https://thobey.se
           rm -f public/CNAME
           mkdir public/fonts
-          cp styles.css site.js hero-shader.js favicon.svg apple-touch-icon.png og.jpg thomas-ytterstrom-*.jpg thomas-ytterstrom-*.webp public/
+          cp styles.css site.js hero-shader.js aurora-*.webp favicon.svg apple-touch-icon.png og.jpg thomas-ytterstrom-*.jpg thomas-ytterstrom-*.webp public/
           cp fonts/big-shoulders.woff2 fonts/montserrat.woff2 fonts/public-sans.woff2 public/fonts/
           find public -type f | sort
 

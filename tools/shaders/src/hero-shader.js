@@ -41,11 +41,15 @@ function mount(section, layers, extraClass) {
     components: [SolidColor, Aurora, FilmGrain],
     disableTelemetry: true,
     onReady: () => { canvas.classList.add('is-on'); if (still) setTimeout(() => shader?.pause(), 100); },
-    onError: () => canvas.remove(),
-  }).then((s) => { shader = s; }, () => canvas.remove());
+    onError: (reason) => off(reason),
+  }).then((s) => { shader = s; }, (err) => off(err?.message || err));
+  // Leaves a note in the browser console so a missing aurora can be explained
+  function off(reason) { console.info('Aurora not shown:', reason); canvas.remove(); }
 }
 
-if ('gpu' in navigator) {
+if (!('gpu' in navigator)) {
+  console.info('Aurora not shown: this browser has no WebGPU');
+} else {
   for (const [selector, layers, extraClass] of scenes) {
     const section = document.querySelector(selector);
     if (section) mount(section, layers, extraClass);

@@ -379,3 +379,9 @@ p { text-wrap: pretty; }
   .cols { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
   .cols > :first-child { grid-column: 1 / -1; } /* company on its own row, Contact and Elsewhere side by side */
 }
+
+/* Mockup: WebGPU background behind the hero (tools/shaders). Fades in once the first frame is drawn; without WebGPU the plain slate stays. */
+.hero { position: relative; isolation: isolate; }
+.hero-shader { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: 0; transition: opacity 1.2s var(--ease-soft); pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+.hero-shader.is-on { opacity: 1; }

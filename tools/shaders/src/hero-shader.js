@@ -14,7 +14,7 @@ const invert = (hex) => '#' + (0xffffff ^ parseInt(hex.slice(1), 16)).toString(1
 const scenes = [
   ['.hero', [
     { type: 'SolidColor', props: { color: SLATE } },
-    { type: 'Aurora', props: { colorA: CORAL, colorB: PEACH, colorC: PLUM, intensity: 38, curtainCount: 3, speed: 2, waviness: 40, height: 90, center: { x: 0.7, y: 0.1 }, opacity: 0.75, seed: 2 } },
+    { type: 'Aurora', props: { colorA: CORAL, colorB: PEACH, colorC: PLUM, intensity: 38, curtainCount: 3, speed: 4, waviness: 40, height: 90, center: { x: 0.7, y: 0.1 }, opacity: 0.75, seed: 2 } },
     { type: 'FilmGrain', props: { strength: 0.06 } },
   ]],
   // The aurora is a glow made for dark backgrounds. On the light contact section it is drawn
@@ -22,7 +22,7 @@ const scenes = [
   // curtains come out as coral and peach tints instead of grey.
   ['.contact', [
     { type: 'SolidColor', props: { color: invert(PAPER) } },
-    { type: 'Aurora', props: { colorA: invert(CORAL), colorB: invert(PEACH), colorC: invert(PLUM), intensity: 45, curtainCount: 3, speed: 1.5, waviness: 40, height: 90, center: { x: 0.75, y: 0.05 }, opacity: 0.6, seed: 5 } },
+    { type: 'Aurora', props: { colorA: invert(CORAL), colorB: invert(PEACH), colorC: invert(PLUM), intensity: 45, curtainCount: 3, speed: 3, waviness: 40, height: 90, center: { x: 0.75, y: 0.05 }, opacity: 0.6, seed: 5 } },
   ], 'is-inverted'],
 ];
 

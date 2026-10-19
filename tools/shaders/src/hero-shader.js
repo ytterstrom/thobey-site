@@ -19,6 +19,9 @@ if (hero && 'gpu' in navigator) {
   const canvas = document.createElement('canvas');
   canvas.className = 'hero-shader';
   canvas.setAttribute('aria-hidden', 'true');
+  // Inline 100% sizes stop the library from pinning the canvas to its first pixel size, so it follows resizes
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
   hero.prepend(canvas);
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let shader;

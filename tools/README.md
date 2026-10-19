@@ -16,7 +16,7 @@ python3 tools/build-taste.py .
 
 ## Hero aurora
 
-`hero-shader.js` at the repo root is built from `shaders/` (the [Shaders](https://github.com/shader-effects-inc/shaders) library, MIT). Edit `shaders/src/hero-shader.js`, then rebuild:
+`hero-shader.js` at the repo root (aurora in the hero and, fainter, in the contact section) is built from `shaders/` (the [Shaders](https://github.com/shader-effects-inc/shaders) library, MIT). Edit `shaders/src/hero-shader.js`, then rebuild:
 
 ```
 cd tools/shaders && npm install && node build.mjs

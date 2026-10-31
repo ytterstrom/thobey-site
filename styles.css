@@ -390,3 +390,40 @@ p { text-wrap: pretty; }
 .contact > .section-shader { -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 70%); mask-image: linear-gradient(to bottom, #000 20%, transparent 70%); }
 .section-shader.is-inverted { filter: invert(1); }
 .section-shader.is-on { opacity: 1; }
+
+/* Motion additions: section bar, aurora drift, hover focus, page cross-fade. All gated on no-preference. */
+@media (min-width: 47.5em) {
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+    display: flex; justify-content: flex-end;
+    padding: 0.25rem var(--margin);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    font-size: var(--step-small);
+    transform: translateY(-100%); visibility: hidden;
+  }
+  .topbar.is-on { transform: none; visibility: visible; }
+  .topbar ul { position: relative; display: flex; align-items: center; gap: 0 1.75rem; list-style: none; padding: 0; margin: 0; }
+  .topbar a { display: block; text-decoration: none; color: var(--muted); padding: 0.75rem 0; transition: color var(--t-hover) ease; }
+  .topbar a:hover, .topbar a[aria-current] { color: var(--ink); }
+  .topbar .button { padding: 0.5rem 1.1rem; margin: 0.25rem 0; color: var(--accent-ink); }
+  .topbar-ink { position: absolute; left: 0; bottom: 0; height: 2px; background: var(--accent); opacity: 0; }
+}
+@media (max-width: 47.49em) { .topbar { display: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .topbar { transition: transform 420ms var(--ease-out), visibility 0s linear 420ms; }
+  .topbar.is-on { transition: transform 420ms var(--ease-out), visibility 0s; }
+  .topbar-ink { transition: transform 420ms var(--ease-out), width 420ms var(--ease-out), opacity 200ms ease; }
+  .hero > .section-shader { translate: 0 calc(var(--scroll, 0) * -5rem); filter: opacity(calc(1 - var(--scroll, 0) * 0.65)); will-change: translate; }
+  .hero > .section-shader.is-on { transition: opacity 1.2s var(--ease-soft); }
+}
+@media (hover: hover) {
+  .facts li, .clients span { transition: opacity 240ms ease; }
+  .facts:has(li:hover) li:not(:hover) { opacity: 0.5; }
+  .clients:has(span:hover) span:not(:hover) { opacity: 0.45; }
+}
+/* Switching language cross-fades the two pages (browsers without View Transitions just load normally) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 280ms; animation-timing-function: var(--ease-soft); }
+}

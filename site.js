@@ -70,3 +70,114 @@
   btn.parentElement.hidden = false;
   btn.style.minWidth = `${btn.offsetWidth}px`; // the shorter "Copied" must not shrink the button
 })();
+
+// Motion, all of it skipped under prefers-reduced-motion and never needed to read the page.
+const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Section bar: once the hero has scrolled away, a slim bar with the same links slides in and
+// a coral line follows the section you are reading. Desktop only (phones hide these links).
+(() => {
+  const nav = document.querySelector('.site-nav');
+  const hero = document.querySelector('.hero');
+  if (!nav || !hero || !('IntersectionObserver' in window)) return;
+  const items = [...nav.querySelectorAll('li')].filter((li) => li.classList.contains('optional') || li.querySelector('.button'));
+  const bar = document.createElement('div');
+  bar.className = 'topbar';
+  bar.inert = true;
+  const list = document.createElement('ul');
+  const ink = document.createElement('span');
+  ink.className = 'topbar-ink';
+  ink.setAttribute('aria-hidden', 'true');
+  const links = new Map();
+  items.forEach((li) => {
+    const copy = li.cloneNode(true);
+    copy.classList.remove('optional');
+    list.append(copy);
+    const a = copy.querySelector('a');
+    if (a.hash) links.set(a.hash.slice(1), a);
+  });
+  list.append(ink);
+  bar.append(list);
+  document.body.append(bar);
+
+  const place = (a) => {
+    if (!a) { ink.style.opacity = 0; return; }
+    ink.style.opacity = 1;
+    ink.style.width = `${a.offsetWidth}px`;
+    ink.style.transform = `translateX(${a.offsetLeft}px)`;
+  };
+  let current = null;
+  const setCurrent = (id) => {
+    current = links.get(id) || null;
+    links.forEach((a) => { if (a === current) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+    place(current);
+  };
+  // The section crossing the middle of the viewport is the one being read
+  const seen = new Map();
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach((e) => seen.set(e.target.id, e.isIntersecting));
+    const live = [...links.keys()].filter((id) => seen.get(id));
+    setCurrent(live.at(-1) || null);
+  }, { rootMargin: '-45% 0px -54% 0px' });
+  links.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+  new IntersectionObserver(([e]) => {
+    const on = !e.isIntersecting && e.boundingClientRect.bottom < 0;
+    bar.classList.toggle('is-on', on);
+    bar.inert = !on;
+    if (on) place(current);
+  }).observe(hero);
+  addEventListener('resize', () => place(current));
+})();
+
+// Figures in Selected work count up once to the value already in the HTML.
+(() => {
+  if (calm || !('IntersectionObserver' in window)) return;
+  const format = (n, sep) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, sep);
+  const jobs = new Map();
+  const io = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      io.unobserve(entry.target);
+      const { num, to, sep, tail } = jobs.get(entry.target);
+      const t0 = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - t0) / 900, 1);
+        num.textContent = format(Math.round(to * (1 - Math.pow(1 - p, 3))), sep) + tail;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.facts .figure').forEach((el) => {
+    const m = el.textContent.match(/^(\d[\d\s\u00a0,.]*\d)(.*)$/);
+    if (!m) return;
+    const sep = (m[1].match(/[\s\u00a0,.]/) || [''])[0];
+    // Screen readers get the final number once; the counting digits are decoration
+    const real = document.createElement('span');
+    real.className = 'sr-only';
+    real.textContent = el.textContent;
+    const num = document.createElement('span');
+    num.setAttribute('aria-hidden', 'true');
+    el.textContent = '';
+    el.append(real, num);
+    num.textContent = format(0, sep) + m[2];
+    jobs.set(el, { num, to: parseInt(m[1].replace(/\D/g, ''), 10), sep, tail: m[2] });
+    io.observe(el);
+  });
+})();
+
+// Aurora drifts up and thins out as the hero scrolls away, so the page reads as one surface.
+(() => {
+  if (calm) return;
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const p = Math.min(Math.max(scrollY / hero.offsetHeight, 0), 1);
+    hero.style.setProperty('--scroll', p.toFixed(3));
+  };
+  addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
